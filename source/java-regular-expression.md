@@ -157,6 +157,88 @@ while (matcher.find()) {
 }
 ```
 
+## Quantifier
+
+Quantifier is used to match by specifying the number of occurrences.
+
+* **"{X}"** occurs X number of times
+* **"{X,Y}"** occurs between X and Y times
+* **"*"** occurs zero or more times, short for {0,}
+* **"+"** occurs one or more times, short for {1,}
+* **"?"** occurs no or one times, short for {0,1}.
+
+```java
+// "?" stands for {0,1}, match will find 3 digits matches and a "zero-length match"
+Pattern pattern = Pattern.compile("[0-9]?");
+Matcher matcher = pattern.matcher("123");
+
+// matches = 4
+int matches = 0;
+while (matcher.find()) {
+	matches++;
+}
+
+// "+" stands for {1,}, and greedy type match will pick the largest match as possible
+Pattern pattern = Pattern.compile("[0-9]+");
+Matcher matcher = pattern.matcher("abc");
+
+// matches = 1
+int matches = 0;
+while (matcher.find()) {
+	matches++;
+}
+```
+
+Java regular expression has a "zero-length matches" concept, it always matches everything in the text including an empty String at the end of every input. This means even if input is empty string, it will still return one match.
+
+```java
+// match an empty string with "?"
+Pattern pattern = Pattern.compile("\\d?");
+Matcher matcher = pattern.matcher("");
+
+// matches = 1, as for "zero-length match"
+int matches = 0;
+while (matcher.find()) {
+	matches++;
+}
+```
+
+By default, Java regular expression takes "greedy" type match, which considers the largest occurrences as one match.
+
+```java
+// match "a" three times in a row, and take it as a single match
+Pattern pattern = Pattern.compile("a{3}");
+Matcher matcher = pattern.matcher("aaaaa");
+
+// matches = 1
+int matches = 0;
+while (matcher.find()) {
+	matches++;
+}
+
+// match "a" two or three times in a row, and take it as a single match
+// greedy type match, and it takes "3" since there exists 3-time match
+Pattern pattern = Pattern.compile("a{2,3}");
+Matcher matcher = pattern.matcher("aaaaa");
+
+// matches = 1
+int matches = 0;
+while (matcher.find()) {
+	matches++;
+}
+
+// match "a" two or three times in a row, and take it as a single match
+// "?" here appoints to lazy type match, and it takes "2" since there exists 2-time match
+Pattern pattern = Pattern.compile("a{2,3}?");
+Matcher matcher = pattern.matcher("aaaaa");
+
+// matches = 2
+int matches = 0;
+while (matcher.find()) {
+	matches++;
+}
+```
+
 ## Boundary Matching
 
 In regular expression, "^" means begining of the string, while "$" means the end of the string.
