@@ -4,9 +4,14 @@ Java regular expression functionality is included in package java.util.regex, wi
 
 Package java.util.regex contains 3 classes: Pattern, Matcher, PatternSyntaxException.
 
-* **Pattern** compiles regular expression.
-* **Matcher** performs match operations between a Pattern and a String.
-* **PatternSyntaxException** indicates a syntax error within Pattern.
+* **Pattern**  
+compiles regular expression.
+
+* **Matcher**  
+performs match operations between a Pattern and a String.
+
+* **PatternSyntaxException**  
+indicates a syntax error within Pattern.
 
 ```java
 // check the exact match, return true if found
@@ -257,9 +262,14 @@ Matcher matcher = pattern.matcher("are dogs are friendly?");
 
 Pattern's compile method can also accept a set of flags alongside the regular expression.
 
-* **Pattern.CANON_EQ** enables canonical equivalence (as in "é" with "e")
-* **Pattern.CASE_INSENSITIVE** enables matching regardless of case
-* **Pattern.COMMENTS** comments are allowed with "#" in regular expression
+* **Pattern.CANON_EQ**  
+enables canonical equivalence (as in "é" with "e")
+
+* **Pattern.CASE_INSENSITIVE**  
+enables matching regardless of case
+
+* **Pattern.COMMENTS**  
+comments are allowed with "#" in regular expression
 
 ```java
 Pattern pattern = Pattern.compile("dog$  #check for word dog at end of text", Pattern.COMMENTS);
@@ -267,9 +277,14 @@ Matcher matcher = pattern.matcher("This is a dog");
 matcher.find(); // true
 ```
 
-* **Pattern.DOTALL** match ignoring the line terminator (multiple lines)
-* **Pattern.LITERAL** ignore any meta characters
-* **Pattern.MULTILINE** match regarding line terminator
+* **Pattern.DOTALL**  
+match ignoring the line terminator (multiple lines)
+
+* **Pattern.LITERAL**  
+ignore any meta characters
+
+* **Pattern.MULTILINE**  
+match regarding line terminator
 
 ## Matcher Methods
 
